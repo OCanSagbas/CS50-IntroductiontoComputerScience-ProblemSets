@@ -31,7 +31,7 @@ do
     }
 }
 while (credit!=0);
- 
+
     if (totalsum%10==0)
     {
       long american = creditcopy/10000000000000;
