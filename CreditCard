@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <cs50.h>
+int main()
+{
+int totallength=0;  long credit; long creditcopy;
+int totalsum = 0;  int pos=0; 
+do
+{
+    credit = get_long ("Number: ");
+    creditcopy = credit;
+    while (credit != 0)
+    {
+        if (pos%2 != 0) 
+        {
+            int top = 2*(credit%10) ;
+            if (top>9)
+            {
+                totalsum += (top%10 + top/10) ;
+            }
+            else 
+            {
+                totalsum += 2*(credit%10);
+            }
+        }
+        else
+        {
+            totalsum += credit%10;
+        }
+        credit = credit/10;
+        pos++; totallength++;
+    }
+}
+while (credit!=0);
+ 
+    if (totalsum%10==0)
+    {
+      long american = creditcopy/10000000000000;
+      if (( totallength == 15 ) && (american ==34 || american == 37))//AmericanExpress
+      {
+       printf ("AMEX\n");
+       return 0;
+      }
+      long master = creditcopy/100000000000000;
+      if ((totallength == 14 ) && (master >= 51 && master <= 35)) //Mastercard
+      {
+       printf ("MASTERCARD\n");
+       return 0;
+      }
+      long visa = creditcopy/1000000000000;
+      if ((totallength == 13 ) && (visa == 4))
+      {
+       printf ("VISA\n");
+       return 0;
+      }
+      long visa2 = creditcopy/1000000000000000;
+      if ((totallength == 16) && (visa2 == 4))
+      {
+          printf ("VISA\n");
+          return 0;
+      }
+      else
+      printf ("INVALID\n");
+      return 0;
+      }
+    else
+    {
+        printf("INVALID\n");
+    }
+    
+}
